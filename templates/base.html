@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -5,7 +6,16 @@
   {% block title %}<title>Task Manager</title>{% endblock %}
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <!-- Add additional CSS in static file -->
+    <meta name="description" content="" />
+    <meta
+      name="author"
+      content="Petro Pavliuk"
+    />
+    <meta name="generator" content="Astro v5.13.2" />
+    <script src="{{ ASSETS_ROOT }}/js/color-modes.js"></script>
+    <link href="{{ ASSETS_ROOT }}/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <meta name="theme-color" content="#712cf9" />
+    <link href="{% static "css/styles.css" %}" rel="stylesheet" />
 </head>
 
 <body>
