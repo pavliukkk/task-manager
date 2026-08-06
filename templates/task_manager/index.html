@@ -1,6 +1,30 @@
 {% extends "base.html" %}
 
 {% block content %}
+  <div class="px-4 py-5 my-5 text-center">
+    <img
+        class="d-block mx-auto mb-4"
+        src="{{ ASSETS_ROOT }}/img/task.png"
+        alt="task_manager_logo"
+        width="72"
+        height="72"
+    />
+    <h1 class="display-5 fw-bold text-body-emphasis">Task Manager</h1>
+    <div class="col-lg-6 mx-auto">
+      <p class="lead mb-4">
+        Organize your team's workflow, assign tasks, manage employees, and monitor progress from a single, intuitive
+        dashboard. Stay productive and keep every project under control.
+      </p>
+      <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+        <button type="button" class="btn btn-primary btn-lg px-4 gap-3">
+          Get Started
+        </button>
+        <button type="button" class="btn btn-outline-secondary btn-lg px-4">
+         View Workers
+        </button>
+      </div>
+    </div>
+  </div>
   <div class="container px-4 py-5">
     <h2 class="pb-2 border-bottom">Task Manager Statistic</h2>
     <div
@@ -12,7 +36,7 @@
             <div
                 class="feature-icon-small d-inline-flex align-items-center justify-content-center text-bg-primary bg-gradient fs-4 rounded-3"
             >
-              <img width="350px" height="30px" src="{{ ASSETS_ROOT }}/img/position.svg">
+              <img alt="position" width="350px" height="30px" src="{{ ASSETS_ROOT }}/img/position.svg">
             </div>
             <h4 class="fw-semibold mb-0 text-body-emphasis">
               Positions: {{ num_positions }}
@@ -25,7 +49,7 @@
             <div
                 class="feature-icon-small d-inline-flex align-items-center justify-content-center text-bg-primary bg-gradient fs-4 rounded-3"
             >
-              <img width="350px" height="30px" src="{{ ASSETS_ROOT }}/img/worker.svg">
+              <img alt="worker" width="350px" height="30px" src="{{ ASSETS_ROOT }}/img/worker.svg">
             </div>
             <h4 class="fw-semibold mb-0 text-body-emphasis">
               Workers: {{ num_workers }}
@@ -38,7 +62,7 @@
             <div
                 class="feature-icon-small d-inline-flex align-items-center justify-content-center text-bg-primary bg-gradient fs-4 rounded-3"
             >
-              <img width="350px" height="30px" src="{{ ASSETS_ROOT }}/img/tasks.svg">
+              <img alt="tasks" width="350px" height="30px" src="{{ ASSETS_ROOT }}/img/tasks.svg">
             </div>
             <h4 class="fw-semibold mb-0 text-body-emphasis">
               Tasks: {{ num_tasks }}
@@ -51,7 +75,7 @@
             <div
                 class="feature-icon-small d-inline-flex align-items-center justify-content-center text-bg-primary bg-gradient fs-4 rounded-3"
             >
-              <img width="350px" height="30px" src="{{ ASSETS_ROOT }}/img/tasktype.svg">
+              <img alt="task_type" width="350px" height="30px" src="{{ ASSETS_ROOT }}/img/tasktype.svg">
             </div>
             <h4 class="fw-semibold mb-0 text-body-emphasis">
               Task types: {{ num_task_types }}
