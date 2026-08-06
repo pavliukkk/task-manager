@@ -52,3 +52,10 @@ class WorkerListView(LoginRequiredMixin, generic.ListView):
     model = Worker
     template_name = "task_manager/worker_list.html"
     paginate_by = 5
+
+
+class TaskListView(LoginRequiredMixin, generic.ListView):
+    model = Task
+    template_name = "task_manager/task_list.html"
+    paginate_by = 5
+    queryset = Task.objects.prefetch_related("assignees")

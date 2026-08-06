@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <div class="container">
+    <h1>Task List
+    </h1>
+
+    {% if task_list %}
+      <table class="table">
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Description</th>
+          <th>Deadline</th>
+          <th>Is completed</th>
+          <th>Priority</th>
+          <th>Task type</th>
+          <th>Assignees</th>
+        </tr>
+        {% for task in task_list %}
+          <tr>
+            <td>{{ task.id }}</td>
+            <td>{{ task.name }}</td>
+            <td>{{ task.description }}</td>
+            <td>{{ task.deadline }}</td>
+            <td>{{ task.is_completed }}</td>
+            <td>{{ task.priority }}</td>
+            <td>{{ task.task_type }}</td>
+            <td>
+              {% for worker in task.assignees.all %}
+              {{ worker.username }}
+                <br>
+            {% endfor %}
+            </td>
+          </tr>
+        {% endfor %}
+      </table>
+      </div>
+    {% else %}
+      <div>
+        <p>There are no task in the service.</p>
+      </div>
+    {% endif %}
+{% endblock %}
