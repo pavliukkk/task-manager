@@ -120,3 +120,5 @@ STATICFILES_DIRS = [
 ASSETS_ROOT = "/static/assets"
 
 AUTH_USER_MODEL = 'task_manager.Worker'
+
+LOGIN_REDIRECT_URL = '/'
