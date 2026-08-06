@@ -1,7 +1,9 @@
 from django.contrib.auth import authenticate, login
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect
 from django.urls import reverse
+from django.views import generic
 
 from task_manager.models import Worker, Position, Task, TaskType
 
@@ -38,3 +40,9 @@ def login_view(request):
         "accounts/login.html",
         {"error": "Invalid username and/or password."},
     )
+
+
+class PositionListView(LoginRequiredMixin, generic.ListView):
+    model = Position
+    template_name = "task_manager/position_list.html"
+    paginate_by = 5

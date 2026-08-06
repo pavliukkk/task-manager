@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <div class="container">
+    <h1>Position List
+    </h1>
+
+    {% if position_list %}
+      <table class="table">
+        <tr>
+          <th>ID</th>
+          <th>Position</th>
+        </tr>
+        {% for position in position_list %}
+          <tr>
+            <td>{{ position.id }}</td>
+            <td>{{ position.name }}</td>
+          </tr>
+        {% endfor %}
+      </table>
+      </div>
+    {% else %}
+      <div>
+        <p>There are no position in the service.</p>
+      </div>
+    {% endif %}
+{% endblock %}

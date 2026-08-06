@@ -21,8 +21,9 @@
     <ul
         class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0"
     >
-      <li><a href="#" class="nav-link px-2 link-secondary">Home</a></li>
-      <li><a href="#" class="nav-link px-2">Positions</a></li>
+      <li><a href="/" class="nav-link px-2 {% if request.path == '/' %}link-secondary{% endif %}">Home</a></li>
+      <li><a href="{% url "task-manager:position-list" %}"
+             class="nav-link px-2 {% if request.path == '/positions/' %}link-secondary{% endif %}">Positions</a></li>
       <li><a href="#" class="nav-link px-2">Workers</a></li>
       <li><a href="#" class="nav-link px-2">Tasks</a></li>
       <li><a href="#" class="nav-link px-2">Task Types</a></li>
@@ -32,7 +33,7 @@
         {% if user.is_authenticated %}
           {{ user.username }}
         {% else %}
-          Login
+          <a class="login-btn" href="{% url "login" %}">Login</a>
         {% endif %}
       </button>
     </div>
