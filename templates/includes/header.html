@@ -22,9 +22,10 @@
         class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0"
     >
       <li><a href="/" class="nav-link px-2 {% if request.path == '/' %}link-secondary{% endif %}">Home</a></li>
-      <li><a href="{% url "task-manager:position-list" %}"
+      <li><a href="{% url "task_manager:position-list" %}"
              class="nav-link px-2 {% if request.path == '/positions/' %}link-secondary{% endif %}">Positions</a></li>
-      <li><a href="#" class="nav-link px-2">Workers</a></li>
+      <li><a href="{% url "task_manager:worker-list" %}"
+             class="nav-link px-2 {% if request.path == '/workers/' %}link-secondary{% endif %}">Workers</a></li>
       <li><a href="#" class="nav-link px-2">Tasks</a></li>
       <li><a href="#" class="nav-link px-2">Task Types</a></li>
     </ul>
