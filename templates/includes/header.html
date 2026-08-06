@@ -26,8 +26,10 @@
              class="nav-link px-2 {% if request.path == '/positions/' %}link-secondary{% endif %}">Positions</a></li>
       <li><a href="{% url "task_manager:worker-list" %}"
              class="nav-link px-2 {% if request.path == '/workers/' %}link-secondary{% endif %}">Workers</a></li>
-      <li><a href="{% url "task_manager:task-list" %}" class="nav-link px-2 {% if request.path == '/tasks/' %}link-secondary{% endif %}">Tasks</a></li>
-      <li><a href="#" class="nav-link px-2">Task Types</a></li>
+      <li><a href="{% url "task_manager:task-list" %}"
+             class="nav-link px-2 {% if request.path == '/tasks/' %}link-secondary{% endif %}">Tasks</a></li>
+      <li><a href="{% url "task_manager:task-types-list" %}"
+             class="nav-link px-2 {% if request.path == '/task-types/' %}link-secondary{% endif %}">Task Types</a></li>
     </ul>
     <div class="col-md-3 text-end">
       <button type="button" class="btn btn-primary">
