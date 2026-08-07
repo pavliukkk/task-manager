@@ -1,14 +1,13 @@
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.http import HttpResponseRedirect
-from django.shortcuts import render, redirect
-from django.urls import reverse
+from django.shortcuts import render
+from django.urls import reverse, reverse_lazy
 from django.views import generic
 
+from task_manager.forms import WorkerCreateForm
 from task_manager.models import Worker, Position, Task, TaskType
 
 
-# Create your views here.
 def index(request):
     num_workers = Worker.objects.count()
     num_positions = Position.objects.count()
@@ -65,3 +64,9 @@ class TaskTypesListView(LoginRequiredMixin, generic.ListView):
     model = TaskType
     template_name = "task_manager/task_type_list.html"
     paginate_by = 5
+
+
+class WorkerCreateView(LoginRequiredMixin, generic.CreateView):
+    model = Worker
+    form_class = WorkerCreateForm
+    success_url = reverse_lazy("task_manager:worker-list")

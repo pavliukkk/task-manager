@@ -148,3 +148,15 @@
     text-decoration: none;
     color: white;
 }
+
+.list-and-create-btns{
+    display: flex;
+    justify-content: space-between;
+    align-content: center;
+}
+
+.btn.btn-bd-primary.create{
+    display: flex;
+    flex-wrap: wrap ;
+    align-content: center;
+}
