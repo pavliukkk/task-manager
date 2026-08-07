@@ -2,8 +2,11 @@
 
 {% block content %}
   <div class="container">
-    <h1>Position List
-    </h1>
+    <div class="list-and-create-btns">
+      <h1>Position List
+      </h1>
+      <a class="btn btn-bd-primary create" href="{% url "task_manager:position-create" %}">Create Position</a>
+    </div>
 
     {% if position_list %}
       <table class="table">
