@@ -7,15 +7,6 @@
           href="/"
           class="d-inline-flex link-body-emphasis text-decoration-none"
       >
-        <svg
-            class="bi"
-            width="40"
-            height="32"
-            role="img"
-            aria-label="Bootstrap"
-        >
-          <use xlink:href="#bootstrap"></use>
-        </svg>
       </a>
     </div>
     <ul
@@ -32,13 +23,21 @@
              class="nav-link px-2 {% if request.path == '/task-types/' %}link-secondary{% endif %}">Task Types</a></li>
     </ul>
     <div class="col-md-3 text-end">
-      <button type="button" class="btn btn-primary">
-        {% if user.is_authenticated %}
-          {{ user.username }}
-        {% else %}
+      {% if user.is_authenticated %}
+        <div class="login-logout-display">
+          <button type="button" class="btn btn-primary">
+            {{ user.username }}
+          </button>
+          <form action="{% url "logout" %}" method="post">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-secondary"><a>Log Out</a></button>
+          </form>
+        </div>
+      {% else %}
+        <button type="button" class="btn btn-primary">
           <a class="login-btn" href="{% url "login" %}">Login</a>
-        {% endif %}
-      </button>
+        </button>
+      {% endif %}
     </div>
   </header>
 </div>
