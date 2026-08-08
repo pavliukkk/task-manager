@@ -1,0 +1,8 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <div class="container">
+    <h1>Do you really want to delete "{{ tasktype.name }}" task type?</h1>
+    {% include "includes/confirm_delete_form.html" %}
+  </div>
+{% endblock %}
