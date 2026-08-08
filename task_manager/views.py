@@ -66,7 +66,7 @@ class TaskCreateView(LoginRequiredMixin, generic.CreateView):
     success_url = reverse_lazy("task_manager:task-list")
 
 
-class TaskTypesListView(LoginRequiredMixin, generic.ListView):
+class TaskTypeListView(LoginRequiredMixin, generic.ListView):
     model = TaskType
     template_name = "task_manager/task_type_list.html"
     paginate_by = 5
@@ -75,7 +75,7 @@ class TaskTypesListView(LoginRequiredMixin, generic.ListView):
 class TaskTypeCreateView(LoginRequiredMixin, generic.CreateView):
     model = TaskType
     fields = "__all__"
-    success_url = reverse_lazy("task_manager:task-types-list")
+    success_url = reverse_lazy("task_manager:task-type-list")
 
 
 class WorkerCreateView(LoginRequiredMixin, generic.CreateView):
