@@ -20,6 +20,7 @@
           <th>Task type</th>
           <th>Assignees</th>
           <th>Update</th>
+          <th>Delete</th>
         </tr>
         {% for task in task_list %}
           <tr>
@@ -39,6 +40,11 @@
             <td>
               <a class="link-light" href="{% url 'task_manager:task-update' pk=task.id %}">
                 Update
+              </a>
+            </td>
+            <td>
+              <a class="link-danger" href="{% url 'task_manager:task-delete' pk=task.id %}">
+                Delete
               </a>
             </td>
           </tr>
