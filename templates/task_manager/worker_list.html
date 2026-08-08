@@ -17,6 +17,7 @@
           <th>First name</th>
           <th>Last name</th>
           <th>Position</th>
+          <th>Update</th>
         </tr>
         {% for worker in worker_list %}
           <tr>
@@ -26,6 +27,11 @@
             <td>{{ worker.first_name }}</td>
             <td>{{ worker.last_name }}</td>
             <td>{{ worker.position }}</td>
+            <td>
+              <a class="link-light" href="{% url 'task_manager:worker-update' pk=worker.id %}">
+                Update
+              </a>
+            </td>
           </tr>
         {% endfor %}
       </table>

@@ -10,6 +10,12 @@ class WorkerCreateForm(UserCreationForm):
         fields = UserCreationForm.Meta.fields + ("first_name", "last_name", "email", "position", )
 
 
+class WorkerUpdateForm(forms.ModelForm):
+    class Meta:
+        model = Worker
+        fields = ("first_name", "last_name", "email", "position", )
+
+
 class TaskForm(forms.ModelForm):
     assignees = forms.ModelMultipleChoiceField(
         queryset=Worker.objects.all(),
