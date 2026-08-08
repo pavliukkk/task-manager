@@ -21,6 +21,7 @@ def index(request):
     }
     return render(request, "task_manager/index.html", context=context)
 
+
 def login_view(request):
     if request.method == "GET":
         return render(request, "accounts/login.html")
@@ -72,6 +73,12 @@ class TaskCreateView(LoginRequiredMixin, generic.CreateView):
     success_url = reverse_lazy("task_manager:task-list")
 
 
+class TaskUpdateView(LoginRequiredMixin, generic.UpdateView):
+    model = Task
+    form_class = TaskForm
+    success_url = reverse_lazy("task_manager:task-list")
+
+
 class TaskTypeListView(LoginRequiredMixin, generic.ListView):
     model = TaskType
     template_name = "task_manager/task_type_list.html"
@@ -79,6 +86,12 @@ class TaskTypeListView(LoginRequiredMixin, generic.ListView):
 
 
 class TaskTypeCreateView(LoginRequiredMixin, generic.CreateView):
+    model = TaskType
+    fields = "__all__"
+    success_url = reverse_lazy("task_manager:task-type-list")
+
+
+class TaskTypeUpdateView(LoginRequiredMixin, generic.UpdateView):
     model = TaskType
     fields = "__all__"
     success_url = reverse_lazy("task_manager:task-type-list")

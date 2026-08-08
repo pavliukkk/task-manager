@@ -19,6 +19,7 @@
           <th>Priority</th>
           <th>Task type</th>
           <th>Assignees</th>
+          <th>Update</th>
         </tr>
         {% for task in task_list %}
           <tr>
@@ -31,9 +32,14 @@
             <td>{{ task.task_type }}</td>
             <td>
               {% for worker in task.assignees.all %}
-              {{ worker.username }}
+                {{ worker.username }}
                 <br>
-            {% endfor %}
+              {% endfor %}
+            </td>
+            <td>
+              <a class="link-light" href="{% url 'task_manager:task-update' pk=task.id %}">
+                Update
+              </a>
             </td>
           </tr>
         {% endfor %}

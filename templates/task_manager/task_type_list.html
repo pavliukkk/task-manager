@@ -13,11 +13,17 @@
         <tr>
           <th>ID</th>
           <th>Name</th>
+          <th>Update</th>
         </tr>
         {% for task_type in tasktype_list %}
           <tr>
             <td>{{ task_type.id }}</td>
             <td>{{ task_type.name }}</td>
+            <td>
+              <a class="link-light" href="{% url 'task_manager:task-type-update' pk=task_type.id %}">
+                Update
+              </a>
+            </td>
           </tr>
         {% endfor %}
       </table>
