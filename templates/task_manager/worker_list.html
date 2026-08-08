@@ -18,6 +18,7 @@
           <th>Last name</th>
           <th>Position</th>
           <th>Update</th>
+          <th>Delete</th>
         </tr>
         {% for worker in worker_list %}
           <tr>
@@ -30,6 +31,11 @@
             <td>
               <a class="link-light" href="{% url 'task_manager:worker-update' pk=worker.id %}">
                 Update
+              </a>
+            </td>
+            <td>
+              <a class="link-danger" href="{% url 'task_manager:worker-delete' pk=worker.id %}">
+                Delete
               </a>
             </td>
           </tr>
