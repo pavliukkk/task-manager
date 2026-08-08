@@ -54,6 +54,11 @@ class PositionUpdateView(LoginRequiredMixin, generic.UpdateView):
     success_url = reverse_lazy("task_manager:position-list")
 
 
+class PositionDeleteView(LoginRequiredMixin, generic.DeleteView):
+    model = Position
+    success_url = reverse_lazy("task_manager:position-list")
+
+
 class WorkerListView(LoginRequiredMixin, generic.ListView):
     model = Worker
     template_name = "task_manager/worker_list.html"

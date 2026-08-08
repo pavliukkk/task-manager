@@ -14,6 +14,7 @@
           <th>ID</th>
           <th>Position</th>
           <th>Update</th>
+          <th>Delete</th>
         </tr>
         {% for position in position_list %}
           <tr>
@@ -22,6 +23,11 @@
             <td>
               <a class="link-light" href="{% url 'task_manager:position-update' pk=position.id %}">
                 Update
+              </a>
+            </td>
+            <td>
+              <a class="link-danger" href="{% url 'task_manager:position-delete' pk=position.id %}">
+                Delete
               </a>
             </td>
           </tr>
