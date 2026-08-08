@@ -47,6 +47,12 @@ class PositionListView(LoginRequiredMixin, generic.ListView):
     paginate_by = 5
 
 
+class PositionUpdateView(LoginRequiredMixin, generic.UpdateView):
+    model = Position
+    fields = "__all__"
+    success_url = reverse_lazy("task_manager:position-list")
+
+
 class WorkerListView(LoginRequiredMixin, generic.ListView):
     model = Worker
     template_name = "task_manager/worker_list.html"
