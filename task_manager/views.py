@@ -72,6 +72,12 @@ class TaskTypesListView(LoginRequiredMixin, generic.ListView):
     paginate_by = 5
 
 
+class TaskTypeCreateView(LoginRequiredMixin, generic.CreateView):
+    model = TaskType
+    fields = "__all__"
+    success_url = reverse_lazy("task_manager:task-types-list")
+
+
 class WorkerCreateView(LoginRequiredMixin, generic.CreateView):
     model = Worker
     form_class = WorkerCreateForm

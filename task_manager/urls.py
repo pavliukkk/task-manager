@@ -8,7 +8,8 @@ from .views import (
     TaskTypesListView,
     WorkerCreateView,
     PositionCreateView,
-    TaskCreateView
+    TaskCreateView,
+    TaskTypeCreateView
 )
 
 app_name = 'task_manager'
@@ -22,4 +23,5 @@ urlpatterns = [
     path("tasks/", TaskListView.as_view(), name="task-list"),
     path("tasks/create/", TaskCreateView.as_view(), name="task-create"),
     path("task-types/", TaskTypesListView.as_view(), name="task-types-list"),
+    path("tasks-types/create/", TaskTypeCreateView.as_view(), name="task-type-create"),
 ]
