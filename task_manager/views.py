@@ -118,23 +118,23 @@ class TaskListView(LoginRequiredMixin, generic.ListView):
         context = super(TaskListView, self).get_context_data(**kwargs)
         name = self.request.GET.get("name", "")
         context["search_form"] = TaskNameSearchForm(initial={"name": name})
-        # context["not_completed_tasks_form"] = MyNotCompletedTasksSearchForm()
-        # context["completed_tasks_form"] = MyCompletedTasksSearchForm()
+        context["not_completed_tasks_form"] = MyNotCompletedTasksSearchForm()
+        context["completed_tasks_form"] = MyCompletedTasksSearchForm()
         return context
 
     def get_queryset(self):
         name = self.request.GET.get("name", "")
-        # not_completed = self.request.GET.get("not_completed", "")
-        # completed = self.request.GET.get("completed")
-        # user = self.request.user.username
+        not_completed = self.request.GET.get("not_completed", "")
+        completed = self.request.GET.get("completed")
+        user = self.request.user.username
 
         queryset = Task.objects.prefetch_related("assignees")
         if name:
             return queryset.filter(name__icontains=name)
-        # if not_completed:
-        #     return queryset.filter(is_completed=False, assignees__username=user)
-        # if completed:
-        #     return queryset.filter(is_completed=True, assignees__username=user)
+        if not_completed:
+            return queryset.filter(is_completed=False, assignees__username=user)
+        if completed:
+            return queryset.filter(is_completed=True, assignees__username=user)
         return queryset
 
 

@@ -7,7 +7,21 @@
       </h1>
       <a class="btn btn-bd-primary create" href="{% url "task_manager:task-create" %}">Create Task</a>
     </div>
-    {% include "includes/search_form.html" %}
+    <div style="display: flex; gap: 10px">
+      {% include "includes/search_form.html" %}
+      {% load crispy_forms_filters %}
+      <form action="" method="get" class="row row-cols-md-auto g-1 align-items-center">
+        <input class="btn btn-secondary" type="submit" value="All tasks">
+      </form>
+      <form action="" method="get" class="row row-cols-md-auto g-1 align-items-center">
+        {{ completed_tasks_form|crispy }}
+        <input class="btn btn-secondary" type="submit" value="My completed tasks">
+      </form>
+      <form action="" method="get" class="row row-cols-md-auto g-1 align-items-center">
+        {{ not_completed_tasks_form|crispy }}
+        <input class="btn btn-secondary" type="submit" value="My not completed tasks">
+      </form>
+    </div>
 
     {% if task_list %}
       <table class="table">
