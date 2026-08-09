@@ -7,6 +7,7 @@
       </h1>
       <a class="btn btn-bd-primary create" href="{% url "task_manager:task-type-create" %}">Create Task Type</a>
     </div>
+    {% include "includes/search_form.html" %}
 
     {% if tasktype_list %}
       <table class="table">

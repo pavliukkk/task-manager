@@ -4,7 +4,8 @@ from django.shortcuts import render
 from django.urls import reverse, reverse_lazy
 from django.views import generic
 
-from task_manager.forms import WorkerCreateForm, TaskForm, WorkerUpdateForm, PositionNameSearchForm, TaskNameSearchForm
+from task_manager.forms import WorkerCreateForm, TaskForm, WorkerUpdateForm, PositionNameSearchForm, TaskNameSearchForm, \
+    TaskTypeNameSearchForm
 from task_manager.models import Worker, Position, Task, TaskType
 
 
@@ -135,6 +136,19 @@ class TaskTypeListView(LoginRequiredMixin, generic.ListView):
     model = TaskType
     template_name = "task_manager/task_type_list.html"
     paginate_by = 5
+
+    def get_context_data(self, *, object_list=..., **kwargs):
+        context = super(TaskTypeListView, self).get_context_data(**kwargs)
+        name = self.request.GET.get("name", "")
+        context["search_form"] = TaskTypeNameSearchForm(initial={"name": name})
+        return context
+
+    def get_queryset(self):
+        name = self.request.GET.get("name", "")
+        queryset = TaskType.objects.all()
+        if name:
+            return queryset.filter(name__icontains=name)
+        return queryset
 
 
 class TaskTypeCreateView(LoginRequiredMixin, generic.CreateView):
