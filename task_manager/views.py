@@ -5,7 +5,7 @@ from django.urls import reverse, reverse_lazy
 from django.views import generic
 
 from task_manager.forms import WorkerCreateForm, TaskForm, WorkerUpdateForm, PositionNameSearchForm, TaskNameSearchForm, \
-    TaskTypeNameSearchForm
+    TaskTypeNameSearchForm, WorkerUsernameSearchForm, MyNotCompletedTasksSearchForm, MyCompletedTasksSearchForm
 from task_manager.models import Worker, Position, Task, TaskType
 
 
@@ -78,6 +78,19 @@ class WorkerListView(LoginRequiredMixin, generic.ListView):
     template_name = "task_manager/worker_list.html"
     paginate_by = 5
 
+    def get_context_data(self, *, object_list=..., **kwargs):
+        context = super(WorkerListView, self).get_context_data(**kwargs)
+        username = self.request.GET.get("username", "")
+        context["search_form"] = WorkerUsernameSearchForm(initial={"username": username})
+        return context
+
+    def get_queryset(self):
+        username = self.request.GET.get("username", "")
+        queryset = Worker.objects.all()
+        if username:
+            return queryset.filter(username__icontains=username)
+        return queryset
+
 
 class WorkerCreateView(LoginRequiredMixin, generic.CreateView):
     model = Worker
@@ -105,13 +118,23 @@ class TaskListView(LoginRequiredMixin, generic.ListView):
         context = super(TaskListView, self).get_context_data(**kwargs)
         name = self.request.GET.get("name", "")
         context["search_form"] = TaskNameSearchForm(initial={"name": name})
+        # context["not_completed_tasks_form"] = MyNotCompletedTasksSearchForm()
+        # context["completed_tasks_form"] = MyCompletedTasksSearchForm()
         return context
 
     def get_queryset(self):
         name = self.request.GET.get("name", "")
+        # not_completed = self.request.GET.get("not_completed", "")
+        # completed = self.request.GET.get("completed")
+        # user = self.request.user.username
+
         queryset = Task.objects.prefetch_related("assignees")
         if name:
             return queryset.filter(name__icontains=name)
+        # if not_completed:
+        #     return queryset.filter(is_completed=False, assignees__username=user)
+        # if completed:
+        #     return queryset.filter(is_completed=True, assignees__username=user)
         return queryset
 
 

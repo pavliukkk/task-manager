@@ -7,6 +7,7 @@
       </h1>
       <a class="btn btn-bd-primary create" href="{% url "task_manager:worker-create" %}">Create Worker</a>
     </div>
+    {% include "includes/search_form.html" %}
 
     {% if worker_list %}
       <table class="table">

@@ -46,10 +46,27 @@ class TaskNameSearchForm(forms.Form):
     )
 
 
+# class MyNotCompletedTasksSearchForm(forms.Form):
+#     not_completed = forms.CharField(widget=forms.HiddenInput(), required=False, initial=False)
+#
+#
+# class MyCompletedTasksSearchForm(forms.Form):
+#     completed = forms.CharField(widget=forms.HiddenInput(), required=False, initial=True)
+
+
 class TaskTypeNameSearchForm(forms.Form):
     name = forms.CharField(
         max_length=255,
         required=False,
         label="",
         widget=forms.TextInput(attrs={"placeholder": "Search by name"}),
+    )
+
+
+class WorkerUsernameSearchForm(forms.Form):
+    username = forms.CharField(
+        max_length=255,
+        required=False,
+        label="",
+        widget=forms.TextInput(attrs={"placeholder": "Search by username"}),
     )
