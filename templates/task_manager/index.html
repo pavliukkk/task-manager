@@ -16,12 +16,12 @@
         dashboard. Stay productive and keep every project under control.
       </p>
       <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
-        <button type="button" class="btn btn-primary btn-lg px-4 gap-3">
+        <a href="/tasks/?not_completed=False" class="btn btn-primary btn-lg px-4 gap-3">
           Get Started
-        </button>
-        <button type="button" class="btn btn-outline-secondary btn-lg px-4">
-         View Workers
-        </button>
+        </a>
+        <a href="{% url "task_manager:worker-list" %}" class="btn btn-outline-secondary btn-lg px-4">
+          View Workers
+        </a>
       </div>
     </div>
   </div>
