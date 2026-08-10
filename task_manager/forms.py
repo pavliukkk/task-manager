@@ -45,7 +45,7 @@ class PositionForm(forms.ModelForm):
 
     def clean_name(self):
         name = self.cleaned_data["name"]
-        if not name.isalpha():
+        if not all(char.isalpha() or char.isspace() for char in name):
             raise forms.ValidationError("Position name must have only letters")
         return name
 
@@ -76,7 +76,7 @@ class TaskTypeForm(forms.ModelForm):
 
     def clean_name(self):
         name = self.cleaned_data["name"]
-        if not name.isalpha():
+        if not all(char.isalpha() or char.isspace() for char in name):
             raise forms.ValidationError("Task type name must have only letters")
         return name
 
