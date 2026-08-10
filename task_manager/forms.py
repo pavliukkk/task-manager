@@ -47,7 +47,7 @@ class TaskNameSearchForm(forms.Form):
 
 
 class MyNotCompletedTasksSearchForm(forms.Form):
-    not_completed = forms.CharField(widget=forms.HiddenInput(), required=False, initial=False)
+    not_completed = forms.CharField(widget=forms.HiddenInput(), required=False, initial=True)
 
 
 class MyCompletedTasksSearchForm(forms.Form):
