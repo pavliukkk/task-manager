@@ -1,0 +1,16 @@
+<form method="post" action="{% url 'task_manager:task-complete' task.pk %}">
+  {% csrf_token %}
+
+  <button type="submit" style="width: 100%" class="btn btn-sm
+        {% if task.is_completed %}
+            btn-success cancel-complete">
+  {% else %}
+    btn-outline-success">
+  {% endif %}
+  {% if task.is_completed %}
+    <span>✓ Completed</span>
+  {% else %}
+    Mark as completed
+  {% endif %}
+  </button>
+</form>

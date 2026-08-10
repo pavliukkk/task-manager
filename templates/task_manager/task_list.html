@@ -54,7 +54,7 @@
             <td>{{ task.name }}</td>
             <td>{{ task.description }}</td>
             <td>{{ task.deadline }}</td>
-            <td>{{ task.is_completed }}</td>
+            <td>{% include "includes/complete_task_form.html" %}</td>
             <td>{{ task.priority }}</td>
             <td>{{ task.task_type }}</td>
             <td>
