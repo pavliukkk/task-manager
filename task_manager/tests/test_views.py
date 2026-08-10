@@ -365,7 +365,7 @@ class CompleteTaskViewTests(ViewTestMixin, TestCase):
 
         response = self.client.get(
             reverse(
-                "task_manager:complete-task",
+                "task_manager:task-complete",
                 args=[self.task.pk],
             )
         )
@@ -382,7 +382,7 @@ class CompleteTaskViewTests(ViewTestMixin, TestCase):
 
         response = self.client.get(
             reverse(
-                "task_manager:complete-task",
+                "task_manager:task-complete",
                 args=[self.task.pk],
             )
         )
