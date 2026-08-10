@@ -6,7 +6,7 @@ from django.views import generic
 
 from task_manager.forms import WorkerCreateForm, TaskForm, WorkerUpdateForm, PositionNameSearchForm, TaskNameSearchForm, \
     TaskTypeNameSearchForm, WorkerUsernameSearchForm, MyNotCompletedTasksSearchForm, MyCompletedTasksSearchForm, \
-    PositionCreateForm
+    PositionForm
 from task_manager.models import Worker, Position, Task, TaskType
 
 
@@ -73,13 +73,13 @@ class PositionListView(LoginRequiredMixin, generic.ListView):
 
 class PositionCreateView(LoginRequiredMixin, generic.CreateView):
     model = Position
-    form_class = PositionCreateForm
+    form_class = PositionForm
     success_url = reverse_lazy("task_manager:position-list")
 
 
 class PositionUpdateView(LoginRequiredMixin, generic.UpdateView):
     model = Position
-    form_class = PositionCreateForm
+    form_class = PositionForm
     success_url = reverse_lazy("task_manager:position-list")
 
 
