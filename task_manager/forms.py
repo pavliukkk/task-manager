@@ -1,3 +1,5 @@
+import datetime
+
 from django.contrib.auth.forms import UserCreationForm
 from django import forms
 
@@ -26,6 +28,13 @@ class TaskForm(forms.ModelForm):
     class Meta:
         model = Task
         fields = "__all__"
+
+    def clean_deadline(self):
+        deadline = self.cleaned_data["deadline"]
+        today = datetime.date.today()
+        if deadline < today:
+            raise forms.ValidationError(f"Ensure that value is >={today}")
+        return deadline
 
 
 class PositionNameSearchForm(forms.Form):
