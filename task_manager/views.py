@@ -6,7 +6,7 @@ from django.views import generic
 
 from task_manager.forms import WorkerCreateForm, TaskForm, WorkerUpdateForm, PositionNameSearchForm, TaskNameSearchForm, \
     TaskTypeNameSearchForm, WorkerUsernameSearchForm, MyNotCompletedTasksSearchForm, MyCompletedTasksSearchForm, \
-    PositionForm
+    PositionForm, TaskTypeForm
 from task_manager.models import Worker, Position, Task, TaskType
 
 
@@ -191,13 +191,13 @@ class TaskTypeListView(LoginRequiredMixin, generic.ListView):
 
 class TaskTypeCreateView(LoginRequiredMixin, generic.CreateView):
     model = TaskType
-    fields = "__all__"
+    form_class = TaskTypeForm
     success_url = reverse_lazy("task_manager:task-type-list")
 
 
 class TaskTypeUpdateView(LoginRequiredMixin, generic.UpdateView):
     model = TaskType
-    fields = "__all__"
+    form_class = TaskTypeForm
     success_url = reverse_lazy("task_manager:task-type-list")
 
 

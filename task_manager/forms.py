@@ -3,7 +3,7 @@ import datetime
 from django.contrib.auth.forms import UserCreationForm
 from django import forms
 
-from task_manager.models import Worker, Task, Position
+from task_manager.models import Worker, Task, Position, TaskType
 
 
 class WorkerCreateForm(UserCreationForm):
@@ -67,6 +67,18 @@ class TaskForm(forms.ModelForm):
         if deadline < today:
             raise forms.ValidationError(f"Ensure that value is >={today}")
         return deadline
+
+
+class TaskTypeForm(forms.ModelForm):
+    class Meta:
+        model = TaskType
+        fields = "__all__"
+
+    def clean_name(self):
+        name = self.cleaned_data["name"]
+        if not name.isalpha():
+            raise forms.ValidationError("Task type name must have only letters")
+        return name
 
 
 class PositionNameSearchForm(forms.Form):
