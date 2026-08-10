@@ -1,6 +1,6 @@
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.urls import reverse, reverse_lazy
 from django.views import generic
 
@@ -21,6 +21,14 @@ def index(request):
         "num_task_types": num_task_types,
     }
     return render(request, "task_manager/index.html", context=context)
+
+
+def complete_task(request, pk):
+    task = Task.objects.get(pk=pk)
+    task.is_completed = not task.is_completed
+    task.save()
+
+    return redirect("task_manager:task-list")
 
 
 def login_view(request):
