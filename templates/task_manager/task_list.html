@@ -11,15 +11,26 @@
       {% include "includes/search_form.html" %}
       {% load crispy_forms_filters %}
       <form action="" method="get" class="row row-cols-md-auto g-1 align-items-center">
-        <input class="btn btn-secondary" type="submit" value="All tasks">
+        <input
+            class="btn {% if request.get_full_path == '/tasks/' or request.get_full_path == '/tasks/?name=' %}btn-info
+            {% else %}btn-secondary
+            {% endif %}"
+            type="submit"
+            value="All tasks">
       </form>
       <form action="" method="get" class="row row-cols-md-auto g-1 align-items-center">
         {{ completed_tasks_form|crispy }}
-        <input class="btn btn-secondary" type="submit" value="My completed tasks">
+        <input class="btn {% if request.get_full_path == '/tasks/?completed=True' %}btn-info
+            {% else %}btn-secondary
+            {% endif %}"
+               type="submit" value="My completed tasks">
       </form>
       <form action="" method="get" class="row row-cols-md-auto g-1 align-items-center">
         {{ not_completed_tasks_form|crispy }}
-        <input class="btn btn-secondary" type="submit" value="My not completed tasks">
+        <input class="btn {% if request.get_full_path == '/tasks/?not_completed=True' %}btn-info
+            {% else %}btn-secondary
+            {% endif %}"
+               type="submit" value="My not completed tasks">
       </form>
     </div>
 
