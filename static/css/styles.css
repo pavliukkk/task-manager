@@ -149,14 +149,27 @@
     color: white;
 }
 
-.list-and-create-btns{
+.list-and-create-btns {
     display: flex;
     justify-content: space-between;
     align-content: center;
 }
 
-.btn.btn-bd-primary.create{
+.btn.btn-bd-primary.create {
     display: flex;
-    flex-wrap: wrap ;
+    flex-wrap: wrap;
     align-content: center;
+}
+
+.btn.btn-sm.btn-success.cancel-complete:hover span {
+    display: none;
+}
+
+.btn.btn-sm.btn-success.cancel-complete:hover{
+    background-color: red;
+    border: 1px solid white
+}
+
+.btn.btn-sm.btn-success.cancel-complete:hover::after {
+    content: "Mark as not completed";
 }
