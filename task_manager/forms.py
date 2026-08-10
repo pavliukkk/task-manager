@@ -27,8 +27,18 @@ class WorkerUpdateForm(forms.ModelForm):
         model = Worker
         fields = ("first_name", "last_name", "email", "position",)
 
+    def clean_first_name(self):
+        first_name = self.cleaned_data["first_name"]
+        if not first_name.isalpha():
+            raise forms.ValidationError("First name must have only letters")
 
-class PositionCreateForm(forms.ModelForm):
+    def clean_last_name(self):
+        last_name = self.cleaned_data["last_name"]
+        if not last_name.isalpha():
+            raise forms.ValidationError("First name must have only letters")
+
+
+class PositionForm(forms.ModelForm):
     class Meta:
         model = Position
         fields = "__all__"
