@@ -3,7 +3,7 @@ import datetime
 from django.contrib.auth.forms import UserCreationForm
 from django import forms
 
-from task_manager.models import Worker, Task
+from task_manager.models import Worker, Task, Position
 
 
 class WorkerCreateForm(UserCreationForm):
@@ -26,6 +26,18 @@ class WorkerUpdateForm(forms.ModelForm):
     class Meta:
         model = Worker
         fields = ("first_name", "last_name", "email", "position",)
+
+
+class PositionCreateForm(forms.ModelForm):
+    class Meta:
+        model = Position
+        fields = "__all__"
+
+    def clean_name(self):
+        name = self.cleaned_data["name"]
+        if not name.isalpha():
+            raise forms.ValidationError("Position name must have only letters")
+        return name
 
 
 class TaskForm(forms.ModelForm):

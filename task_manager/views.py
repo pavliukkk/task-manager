@@ -5,7 +5,8 @@ from django.urls import reverse, reverse_lazy
 from django.views import generic
 
 from task_manager.forms import WorkerCreateForm, TaskForm, WorkerUpdateForm, PositionNameSearchForm, TaskNameSearchForm, \
-    TaskTypeNameSearchForm, WorkerUsernameSearchForm, MyNotCompletedTasksSearchForm, MyCompletedTasksSearchForm
+    TaskTypeNameSearchForm, WorkerUsernameSearchForm, MyNotCompletedTasksSearchForm, MyCompletedTasksSearchForm, \
+    PositionCreateForm
 from task_manager.models import Worker, Position, Task, TaskType
 
 
@@ -68,6 +69,12 @@ class PositionListView(LoginRequiredMixin, generic.ListView):
         if name:
             return queryset.filter(name__icontains=name)
         return queryset
+
+
+class PositionCreateView(LoginRequiredMixin, generic.CreateView):
+    model = Position
+    form_class = PositionCreateForm
+    success_url = reverse_lazy("task_manager:position-list")
 
 
 class PositionUpdateView(LoginRequiredMixin, generic.UpdateView):
@@ -197,9 +204,3 @@ class TaskTypeUpdateView(LoginRequiredMixin, generic.UpdateView):
 class TaskTypeDeleteView(LoginRequiredMixin, generic.DeleteView):
     model = TaskType
     success_url = reverse_lazy("task_manager:task-type-list")
-
-
-class PositionCreateView(LoginRequiredMixin, generic.CreateView):
-    model = Position
-    fields = "__all__"
-    success_url = reverse_lazy("task_manager:position-list")
