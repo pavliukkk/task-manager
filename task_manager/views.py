@@ -42,26 +42,6 @@ def complete_task(request, pk):
     return redirect("task_manager:task-list")
 
 
-def login_view(request):
-    if request.method == "GET":
-        return render(request, "registration/login.html")
-
-    username = request.POST.get("username")
-    password = request.POST.get("password")
-
-    user = authenticate(request, username=username, password=password)
-
-    if user is not None:
-        login(request, user)
-        return redirect("task_manager:index")
-
-    return render(
-        request,
-        "registration/login.html",
-        context={"error": "Invalid username and/or password."},
-    )
-
-
 class PositionListView(LoginRequiredMixin, generic.ListView):
     model = Position
     template_name = "task_manager/position_list.html"
