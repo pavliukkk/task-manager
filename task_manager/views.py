@@ -1,13 +1,22 @@
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.contrib.auth.views import LoginView
 from django.shortcuts import render, redirect
-from django.urls import reverse, reverse_lazy
+from django.urls import reverse_lazy
 from django.views import generic
 
-from task_manager.forms import WorkerCreateForm, TaskForm, WorkerUpdateForm, PositionNameSearchForm, TaskNameSearchForm, \
-    TaskTypeNameSearchForm, WorkerUsernameSearchForm, MyNotCompletedTasksSearchForm, MyCompletedTasksSearchForm, \
-    PositionForm, TaskTypeForm
+from task_manager.forms import (
+    WorkerCreateForm,
+    TaskForm,
+    WorkerUpdateForm,
+    PositionNameSearchForm,
+    TaskNameSearchForm,
+    TaskTypeNameSearchForm,
+    WorkerUsernameSearchForm,
+    MyNotCompletedTasksSearchForm,
+    MyCompletedTasksSearchForm,
+    PositionForm,
+    TaskTypeForm
+)
 from task_manager.models import Worker, Position, Task, TaskType
 
 
