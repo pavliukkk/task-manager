@@ -1,5 +1,6 @@
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.views import LoginView
 from django.shortcuts import render, redirect
 from django.urls import reverse, reverse_lazy
 from django.views import generic
@@ -34,7 +35,7 @@ def complete_task(request, pk):
 
 def login_view(request):
     if request.method == "GET":
-        return render(request, "accounts/login.html")
+        return render(request, "registration/login.html")
 
     username = request.POST.get("username")
     password = request.POST.get("password")
@@ -43,12 +44,12 @@ def login_view(request):
 
     if user is not None:
         login(request, user)
-        return reverse("task_manager:index")
+        return redirect("task_manager:index")
 
     return render(
         request,
-        "accounts/login.html",
-        {"error": "Invalid username and/or password."},
+        "registration/login.html",
+        context={"error": "Invalid username and/or password."},
     )
 
 
