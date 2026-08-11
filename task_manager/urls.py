@@ -20,7 +20,7 @@ from .views import (
     WorkerDeleteView, complete_task,
 )
 
-app_name = 'task_manager'
+app_name = "task_manager"
 
 urlpatterns = [
     path("", index, name="index"),

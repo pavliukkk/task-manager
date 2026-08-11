@@ -20,7 +20,7 @@ from django.urls import path, include
 from task_manager.views import login_view
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    path("admin/", admin.site.urls),
     path("", include("task_manager.urls", namespace="task_manager")),
     path("accounts/login/", login_view, name="login"),
     path("accounts/", include("django.contrib.auth.urls")),
