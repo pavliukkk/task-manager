@@ -1,11 +1,10 @@
-from datetime import date, timedelta
+from datetime import date
 
 from django.contrib.auth import get_user_model
 from django.test import TestCase
 from django.urls import reverse
 
 from task_manager.models import Position, Task, TaskType
-
 
 Worker = get_user_model()
 
@@ -67,14 +66,14 @@ class LoginViewTests(ViewTestMixin, TestCase):
 
     def test_login_page(self):
         response = self.client.get(
-            reverse("task_manager:login")
+            reverse("login"),
         )
 
         self.assertEqual(response.status_code, 200)
 
     def test_login_with_wrong_credentials(self):
         response = self.client.post(
-            reverse("task_manager:login"),
+            reverse("login"),
             {
                 "username": "john",
                 "password": "wrong-password",
