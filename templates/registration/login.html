@@ -40,8 +40,13 @@
           <button class="w-100 btn btn-lg btn-primary" type="submit">
             Login
           </button>
-          {% if error %}
-            <p style="color: red; margin-top: 5px; text-align: center">{{ error }}</p>
+          {% if form.non_field_errors %}
+            <p style="color: red; margin-top: 5px; text-align: center">
+              Invalid username or password.
+            </p>
+          {% endif %}
+          {% if form.username.errors or form.password.errors %}
+            <p style="color: red; margin-top: 5px; text-align: center">Please, enter all fields</p>
           {% endif %}
           <hr class="my-4"/>
           <small class="text-body-secondary" style="text-align: center"
