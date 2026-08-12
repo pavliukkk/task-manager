@@ -60,10 +60,27 @@ class TaskForm(forms.ModelForm):
         widget=forms.CheckboxSelectMultiple,
         required=False,
     )
+    is_completed = forms.BooleanField(
+        required=False,
+    )
 
     class Meta:
         model = Task
-        fields = "__all__"
+        fields = (
+            "name",
+            "description",
+            "deadline",
+            "is_completed",
+            "priority",
+            "task_type",
+            "assignees",
+        )
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+        if self.instance.pk is None:
+            self.fields.pop("is_completed")
 
     def clean_deadline(self):
         deadline = self.cleaned_data["deadline"]
