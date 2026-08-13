@@ -22,7 +22,7 @@
       <li><a href="{% url "task_manager:task-type-list" %}"
              class="nav-link px-2 {% if request.path == '/task-types/' %}link-secondary{% endif %}">Task Types</a></li>
     </ul>
-    <div class="col-md-3 text-end">
+    <div class="col-md-3-login-logout text-end">
       {% if user.is_authenticated %}
         <div class="login-logout-display">
           <button type="button" class="btn btn-primary">
