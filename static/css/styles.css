@@ -165,11 +165,31 @@
     display: none;
 }
 
-.btn.btn-sm.btn-success.cancel-complete:hover{
+.btn.btn-sm.btn-success.cancel-complete:hover {
     background-color: red;
     border: 1px solid white
 }
 
 .btn.btn-sm.btn-success.cancel-complete:hover::after {
     content: "Mark as not completed";
+}
+
+@media (min-width: 768px) {
+    .task-manager-statistic {
+        flex-wrap: nowrap;
+    }
+}
+
+@media (min-width: 768px) {
+    .col-md-3 {
+        display: none;
+    }
+}
+
+@media (min-width: 991px) {
+    .col-md-3, .col-md-3-login-logout {
+        display: block;
+        flex: 0 0 auto;
+        width: 25%;
+    }
 }
