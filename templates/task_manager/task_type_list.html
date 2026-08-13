@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <div class="container">
+    <div class="list-and-create-btns">
+      <h1>Task Type List
+      </h1>
+      <a class="btn btn-bd-primary create" href="{% url "task_manager:task-type-create" %}">Create Task Type</a>
+    </div>
+    {% include "includes/search_form.html" %}
+
+    {% if tasktype_list %}
+      <table class="table">
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Update</th>
+          <th>Delete</th>
+        </tr>
+        {% for task_type in tasktype_list %}
+          <tr>
+            <td>{{ task_type.id }}</td>
+            <td>{{ task_type.name }}</td>
+            <td>
+              <a class="link-light" href="{% url 'task_manager:task-type-update' pk=task_type.id %}">
+                Update
+              </a>
+            </td>
+            <td>
+              <a class="link-danger" href="{% url 'task_manager:task-type-delete' pk=task_type.id %}">
+                Delete
+              </a>
+            </td>
+          </tr>
+        {% endfor %}
+      </table>
+      </div>
+    {% else %}
+      <div>
+        <p>There are no position in the service.</p>
+      </div>
+    {% endif %}
+{% endblock %}

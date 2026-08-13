@@ -1,0 +1,47 @@
+<div class="container">
+  <header
+      class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom"
+  >
+    <div class="col-md-3 mb-2 mb-md-0">
+      <a
+          href="/"
+          class="d-inline-flex link-body-emphasis text-decoration-none"
+      >
+      </a>
+    </div>
+    <ul
+        class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0"
+    >
+      <li><a href="/" class="nav-link px-2 {% if request.path == '/' %}link-secondary{% endif %}">Home</a></li>
+      <li><a href="{% url "task_manager:position-list" %}"
+             class="nav-link px-2 {% if request.path == '/positions/' %}link-secondary{% endif %}">Positions</a></li>
+      <li><a href="{% url "task_manager:worker-list" %}"
+             class="nav-link px-2 {% if request.path == '/workers/' %}link-secondary{% endif %}">Workers</a></li>
+      <li><a href="{% url "task_manager:task-list" %}"
+             class="nav-link px-2 {% if request.path == '/tasks/' %}link-secondary{% endif %}">Tasks</a></li>
+      <li><a href="{% url "task_manager:task-type-list" %}"
+             class="nav-link px-2 {% if request.path == '/task-types/' %}link-secondary{% endif %}">Task Types</a></li>
+    </ul>
+    <div class="col-md-3 text-end">
+      {% if user.is_authenticated %}
+        <div class="login-logout-display">
+          <button type="button" class="btn btn-primary">
+            {{ user.username }}
+          </button>
+          <form action="{% url "logout" %}" method="post">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-danger"><a>Log Out</a></button>
+          </form>
+        </div>
+      {% else %}
+        <button type="button" class="btn btn-primary">
+          <a class="login-btn" href="{% url "login" %}">Login</a>
+        </button>
+      {% endif %}
+    </div>
+  </header>
+</div>
+<script
+    src="{{ ASSETS_ROOT }}/dist/js/bootstrap.bundle.min.js"
+    class="astro-vvvwv3sm"
+></script>

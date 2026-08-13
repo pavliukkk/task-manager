@@ -1,0 +1,85 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <div class="container">
+    <div class="list-and-create-btns">
+      <h1>Task List
+      </h1>
+      <a class="btn btn-bd-primary create" href="{% url "task_manager:task-create" %}">Create Task</a>
+    </div>
+    <div style="display: flex; gap: 10px">
+      {% include "includes/search_form.html" %}
+      {% load crispy_forms_filters %}
+      <form action="" method="get" class="row row-cols-md-auto g-1 align-items-center">
+        <input
+            class="btn {% if request.get_full_path == '/tasks/' or request.get_full_path == '/tasks/?name=' %}btn-info
+            {% else %}btn-secondary
+            {% endif %}"
+            type="submit"
+            value="All tasks">
+      </form>
+      <form action="" method="get" class="row row-cols-md-auto g-1 align-items-center">
+        {{ completed_tasks_form|crispy }}
+        <input class="btn {% if request.get_full_path == '/tasks/?completed=True' %}btn-info
+            {% else %}btn-secondary
+            {% endif %}"
+               type="submit" value="My completed tasks">
+      </form>
+      <form action="" method="get" class="row row-cols-md-auto g-1 align-items-center">
+        {{ not_completed_tasks_form|crispy }}
+        <input class="btn {% if request.get_full_path == '/tasks/?not_completed=True' %}btn-info
+            {% else %}btn-secondary
+            {% endif %}"
+               type="submit" value="My not completed tasks">
+      </form>
+    </div>
+
+    {% if task_list %}
+      <table class="table">
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Description</th>
+          <th>Deadline</th>
+          <th>Is completed</th>
+          <th>Priority</th>
+          <th>Task type</th>
+          <th>Assignees</th>
+          <th>Update</th>
+          <th>Delete</th>
+        </tr>
+        {% for task in task_list %}
+          <tr>
+            <td>{{ task.id }}</td>
+            <td>{{ task.name }}</td>
+            <td>{{ task.description }}</td>
+            <td>{{ task.deadline }}</td>
+            <td>{% include "includes/complete_task_form.html" %}</td>
+            <td>{{ task.priority }}</td>
+            <td>{{ task.task_type }}</td>
+            <td>
+              {% for worker in task.assignees.all %}
+                {{ worker.username }}
+                <br>
+              {% endfor %}
+            </td>
+            <td>
+              <a class="link-light" href="{% url 'task_manager:task-update' pk=task.id %}">
+                Update
+              </a>
+            </td>
+            <td>
+              <a class="link-danger" href="{% url 'task_manager:task-delete' pk=task.id %}">
+                Delete
+              </a>
+            </td>
+          </tr>
+        {% endfor %}
+      </table>
+      </div>
+    {% else %}
+      <div>
+        <p>There are no task in the service.</p>
+      </div>
+    {% endif %}
+{% endblock %}

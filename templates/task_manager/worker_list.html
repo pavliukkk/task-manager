@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <div class="container">
+    <div class="list-and-create-btns">
+      <h1>Worker List
+      </h1>
+      <a class="btn btn-bd-primary create" href="{% url "task_manager:worker-create" %}">Create Worker</a>
+    </div>
+    {% include "includes/search_form.html" %}
+
+    {% if worker_list %}
+      <table class="table">
+        <tr>
+          <th>ID</th>
+          <th>Username</th>
+          <th>Email</th>
+          <th>First name</th>
+          <th>Last name</th>
+          <th>Position</th>
+          <th>Update</th>
+          <th>Delete</th>
+        </tr>
+        {% for worker in worker_list %}
+          <tr>
+            <td>{{ worker.id }}</td>
+            <td>{{ worker.username }}</td>
+            <td>{{ worker.email }}</td>
+            <td>{{ worker.first_name }}</td>
+            <td>{{ worker.last_name }}</td>
+            <td>{{ worker.position }}</td>
+            <td>
+              <a class="link-light" href="{% url 'task_manager:worker-update' pk=worker.id %}">
+                Update
+              </a>
+            </td>
+            <td>
+              <a class="link-danger" href="{% url 'task_manager:worker-delete' pk=worker.id %}">
+                Delete
+              </a>
+            </td>
+          </tr>
+        {% endfor %}
+      </table>
+      </div>
+    {% else %}
+      <div>
+        <p>There are no worker in the service.</p>
+      </div>
+    {% endif %}
+{% endblock %}
